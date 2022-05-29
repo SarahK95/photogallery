@@ -10,15 +10,15 @@ class Category(models.Model):
     def save_category(self):
         self.save()
     
-#     def delete_category(self):
-#         self.delete()    
+    def delete_category(self):
+        self.delete()    
         
-#     def get_category_id(cls,id):
-#         category = Category.object.get(pk=id)
-#         return category
+    def get_category_id(cls,id):
+        category = Category.object.get(pk=id)
+        return category
     
-#     def __str__(self):
-#         return self.image_category
+    def __str__(self):
+        return self.image_category
     
 # class Location(models.Model):
 #     image_location = models.CharField(max_length=30)

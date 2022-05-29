@@ -20,13 +20,13 @@ class Image(models.Model):
     def delete_image(self):
         self.delete()  
         
-    # def __str__(self):
-    #        return self.img_name      
+    def __str__(self):
+           return self.img_name      
         
-    # @classmethod  
-    # def get_image_by_id(cls, id):
-    #     img = Image.objects.get(id=id)
-    #     return img
+    @classmethod  
+    def get_image_by_id(cls, id):
+        img = Image.objects.get(id=id)
+        return img
     
     # @classmethod
     # def get_all_images(cls):

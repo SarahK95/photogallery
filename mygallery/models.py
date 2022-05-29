@@ -7,8 +7,8 @@ import datetime as dt
 class Category(models.Model):
     image_category = models.CharField(max_length=30)
     
-#     def save_category(self):
-#         self.save()
+    def save_category(self):
+        self.save()
     
 #     def delete_category(self):
 #         self.delete()    

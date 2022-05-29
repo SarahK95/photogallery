@@ -26,15 +26,15 @@ class Location(models.Model):
     def save_location(self):
         self.save()
         
-    # def delete_location(self): 
-    #     self.delete()
+    def delete_location(self): 
+        self.delete()
         
-    # def get_location_id(cls,id):
-    #     location = Location.object.get(pk=id)
-    #     return location   
+    def get_location_id(cls,id):
+        location = Location.object.get(pk=id)
+        return location   
     
-    # def __str__(self):
-    #     return self.image_location        
+    def __str__(self):
+        return self.image_location        
 
 class Image(models.Model):
     img_name =models.CharField(max_length=40)

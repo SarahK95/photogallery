@@ -4,8 +4,8 @@ from django.db import models
 import datetime as dt
 
 # Create your models here.
-# class Category(models.Model):
-#     image_category = models.CharField(max_length=30)
+class Category(models.Model):
+    image_category = models.CharField(max_length=30)
     
 #     def save_category(self):
 #         self.save()

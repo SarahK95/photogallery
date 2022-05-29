@@ -1,11 +1,11 @@
-
-from unicodedata import category
 from django.db import models
-import datetime as dt
+from django.template.defaultfilters import slugify
+from django_resized import ResizedImageField
 
 # Create your models here.
 class Category(models.Model):
     image_category = models.CharField(max_length=100)
+    
     
     def save_category(self):
         self.save()
@@ -42,6 +42,11 @@ class Image(models.Model):
     image = models.ImageField()
     location = models.ForeignKey(Location, null=True, blank=True,on_delete=models.CASCADE ) 
     category = models.ForeignKey(Category,  null=True, blank=True, on_delete=models.CASCADE)
+    
+    # ##ImageFields
+    # squareImagef = ResizedImageField(size=[1000, 1000], crop=['middle', 'center'], default='default_square.jpg', upload_to='square')
+    # landImage = ResizedImageField(size=[2878, 1618], crop=['middle', 'center'], default='default_land.jpg', upload_to='landscape')
+    # tallImage = ResizedImageField(size=[1618, 2878], crop=['middle', 'center'], default='default_tall.jpg', upload_to='tall')
    
     class Meta:
         ordering = ['img_name']

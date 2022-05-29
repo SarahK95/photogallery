@@ -40,8 +40,8 @@ class Image(models.Model):
     img_name =models.CharField(max_length=40)
     description = models.TextField()
     image = models.ImageField()
-    location = models.ForeignKey(Location)
-    category = models.ForeignKey(Category)
+    location = models.ForeignKey(Location,null=True, blank=True, on_delete=models.CASCADE ) 
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
    
     class Meta:
         ordering = ['img_name']

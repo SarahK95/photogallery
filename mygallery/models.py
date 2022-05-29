@@ -5,7 +5,7 @@ import datetime as dt
 
 # Create your models here.
 class Category(models.Model):
-    image_category = models.CharField(max_length=30)
+    image_category = models.CharField(max_length=100)
     
     def save_category(self):
         self.save()
@@ -21,7 +21,7 @@ class Category(models.Model):
         return self.image_category
     
 class Location(models.Model):
-    image_location = models.CharField(max_length=30)
+    image_location = models.CharField(max_length=100)
     
     def save_location(self):
         self.save()
@@ -37,11 +37,11 @@ class Location(models.Model):
         return self.image_location        
 
 class Image(models.Model):
-    img_name =models.CharField(max_length=40)
+    img_name =models.CharField(max_length=100)
     description = models.TextField()
     image = models.ImageField()
-    location = models.ForeignKey(Location,null=True, blank=True, on_delete=models.CASCADE ) 
-    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.CASCADE)
+    location = models.ForeignKey(Location, null=True, blank=True,on_delete=models.CASCADE ) 
+    category = models.ForeignKey(Category,  null=True, blank=True, on_delete=models.CASCADE)
    
     class Meta:
         ordering = ['img_name']

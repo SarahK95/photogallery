@@ -28,15 +28,15 @@ class Image(models.Model):
         img = Image.objects.get(id=id)
         return img
     
-    # @classmethod
-    # def get_all_images(cls):
-    #     all_img=Image.objects.all()
-    #     return all_img
+    @classmethod
+    def get_all_images(cls):
+        all_img=Image.objects.all()
+        return all_img
     
-    # @classmethod
-    # def filter_by_location(cls,id):
-    #     images = Image.objects.filter(location_id=id)
-    #     return images
+    @classmethod
+    def filter_by_location(cls,id):
+        images = Image.objects.filter(location_id=id)
+        return images
     
     # @classmethod
     # def search_by_category(cls, search_term):

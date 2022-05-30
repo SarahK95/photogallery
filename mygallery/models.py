@@ -4,7 +4,9 @@ from django_resized import ResizedImageField
 
 # Create your models here.
 class Category(models.Model):
-    image_category = models.CharField(max_length=100)
+    image_category = models.CharField(max_length=100, blank=True, null=True)
+    slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
+
     
     
     def save_category(self):
@@ -21,7 +23,8 @@ class Category(models.Model):
         return self.image_category
     
 class Location(models.Model):
-    image_location = models.CharField(max_length=100)
+    image_location = models.CharField(max_length=100, blank=True, null=True)
+    slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
     
     def save_location(self):
         self.save()
@@ -42,6 +45,8 @@ class Image(models.Model):
     image = models.ImageField()
     location = models.ForeignKey(Location, null=True, blank=True,on_delete=models.CASCADE ) 
     category = models.ForeignKey(Category,  null=True, blank=True, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
+    
     
     # ##ImageFields
     # squareImagef = ResizedImageField(size=[1000, 1000], crop=['middle', 'center'], default='default_square.jpg', upload_to='square')

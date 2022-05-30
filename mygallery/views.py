@@ -5,7 +5,9 @@ from .models import Image,Category,Location
 # Create your views here.
 def home(request):
     categories = Category.objects.all()
-    return render(request, 'index.html',{'categories':categories})
+    context = {}
+    context['categories'] = categories
+    return render(request, 'index.html', context)
 
 def search_results(request):
     if 'image' in request. GET and request.GET["image"]:
@@ -13,32 +15,37 @@ def search_results(request):
         searched_images = Image.search_by_category(search_term)
         message = f"{search_term}"
         
-        return render(request, 'search.html',{"message":message,"all_imag": searched_images})
+        return render(request, 'search.html',{"message":message,"all_img": searched_images})
     else:
         message = "You haven't searched for any term"
         return render (request, 'search.html',{"message":message})
     
 def categoryPage(request, id):
-    
-    category = Category.objects.get(id=id)
-    images = Image.objects.filter(category=category)
-    for x in images:
-        x.shortDescription = x.description[:130]
+    try:
+        category = Category.objects.get(id=id)
+        images = Image.objects.filter(category=category)
+        for x in images:
+            x.shortDescription = x.description[:130]
 
-    context = {}
-    context['images'] = images
-    context['category'] = category
-
+        context = {}
+        context['images'] = images
+        context['category'] = category
+    except:
+        ValueError
+        raise 'Error'    
     return render(request, 'category.html', context)
 
 def imagePage(request, id):
-    
-    category = Category.objects.get(id=id)
-    image = Image.objects.get(id=id)
+    try: 
+        category = Category.objects.get(id=id)
+        image = Image.objects.get(id=id)
 
-    context = {}
-    context['category'] = category
-    context['image'] = image
+        context = {}
+        context['category'] = category
+        context['image'] = image
+    except:
+        ValueError
+        raise 'Error'    
 
     return render(request, 'image.html', context)
 

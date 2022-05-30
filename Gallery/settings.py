@@ -81,10 +81,11 @@ WSGI_APPLICATION = 'Gallery.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mygallery',
-        'USER': 'sben',
-        'PASSWORD': '1234',
+        'NAME': 'gallery',
+        'USER': 'njerib',
+        'PASSWORD': '5678',
         'HOST': 'localhost',
+        'PORT': '',
         
     }
 }

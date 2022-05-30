@@ -31,11 +31,10 @@
   <header class="mb-auto">
     <div class= "nav-scroller py-1 mb-2">
         <nav class="nav d-flex justify-content-between">
-            <a class="lead  link-secondary text-white" href="#">HOME</a>
-            <a class="lead link-secondary text-white" href="#">TECHNOLOGY</a>
-            <a class="lead link-secondary text-white" href="#">ART</a>
-            <a class="lead link-secondary text-white" href="#">ANIMES</a>
-    
+            {%for category in categories%}
+            <a class="lead  link-secondary text-white" href="{%url 'image-category' category.id %}">{{category.image_category}}</a>
+            {%endfor%}
+            
           </nav>
     </div>
   </header>

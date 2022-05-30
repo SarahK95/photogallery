@@ -6,6 +6,7 @@ from django_resized import ResizedImageField
 class Category(models.Model):
     image_category = models.CharField(max_length=100, blank=True, null=True)
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
+    id = models.CharField(max_length=50,primary_key=True, unique=True, blank=True)
 
     
     
@@ -25,6 +26,7 @@ class Category(models.Model):
 class Location(models.Model):
     image_location = models.CharField(max_length=100, blank=True, null=True)
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
+    id = models.CharField(max_length=50,primary_key=True, unique=True, blank=True)
     
     def save_location(self):
         self.save()
@@ -42,14 +44,15 @@ class Location(models.Model):
 class Image(models.Model):
     img_name =models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField()
+    image = models.ImageField(upload_to = 'images/', default='No image')
     location = models.ForeignKey(Location, null=True, blank=True,on_delete=models.CASCADE ) 
     category = models.ForeignKey(Category,  null=True, blank=True, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
+    id = models.CharField(max_length=50,primary_key=True, unique=True, blank=True)
     
     
     # ##ImageFields
-    # squareImagef = ResizedImageField(size=[1000, 1000], crop=['middle', 'center'], default='default_square.jpg', upload_to='square')
+    # squareImage = ResizedImageField(size=[1000, 1000], crop=['middle', 'center'], default='default_square.jpg', upload_to='square')
     # landImage = ResizedImageField(size=[2878, 1618], crop=['middle', 'center'], default='default_land.jpg', upload_to='landscape')
     # tallImage = ResizedImageField(size=[1618, 2878], crop=['middle', 'center'], default='default_tall.jpg', upload_to='tall')
    

@@ -5,6 +5,7 @@
 ## Project Description
 
 This is a photo gallery Django web application. A user can veiw photos according to category and location of the image.
+![landing page](https://github.com/SarahK95/photogallery/blob/master/homeimg.png)
 
 
 ### User story

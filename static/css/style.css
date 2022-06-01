@@ -1,9 +1,9 @@
 
 body {
-background:rgb(200, 75, 17);
+background: rgb(71, 24, 2);
 }
 .navbar {
-background: #efd8d8;
+background: rgba(160, 81, 45, 0.89);
 }
 
 .flex {
@@ -19,4 +19,8 @@ text-decoration: none;
 
 .locs:hover {
 color: sienna;
+}
+
+.card-body{
+    color: #000;
 }

@@ -2,7 +2,7 @@
 
 ### Anime | Gallery
 
-##Project Description
+## Project Description
 
 This is a photo gallery Django web application. A user can veiw photos according to category and location of the image.
 

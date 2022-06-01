@@ -20,14 +20,6 @@ def search_category(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
     
-    
-    # if request.method == 'POST':
-    #     searched = request.POST.get('searched')
-    #     search_results = Images.objects.filter(category__name=searched.title())
-    #     return render(request, 'search.html', {'searched': searched, 'search_results': search_results})
-    # else:
-    #     return render(request, 'search.html')
-    
    
     
 def search_location(request):

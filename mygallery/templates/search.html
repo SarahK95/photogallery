@@ -6,7 +6,7 @@
     <div class="row">
         {% if searched %}
         <h3 class="text-center text-muted mt-3">{{search_results|length}} search images</h3>
-        {%for image in images%}
+        {%for image in search_images%}
         <div class="col-md-4">
             <div class="card shadow-sm">
                 <img src="{{image.image.url}}"

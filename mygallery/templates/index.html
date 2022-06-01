@@ -1,58 +1,53 @@
-{%load static %}
-{%load bootstrap4 %}
-{%bootstrap_css %}
 
-<!doctype html>
-<html lang="en" class="h-100">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Image Website">
-    <title>My Gallery</title>
+{% extends 'base.html' %}
+{% block content %}
 
-    <link rel="canonical" href="#">
+<body>
+<!--<h3 class="text-center text-dark text-muted mt-3"><strong>Anime World!</strong> </h3>-->
 
-    <link href="{% static 'assets/css/bootstrap.min.css'%}" rel="stylesheet">
+    <div class="row">   
+        {%for image in images%}
+        <div class="col-md-4">
+            <div class="card my-3" style="width: 22rem;">
+                <img src="{{image.image.url}}" class="card-img-top" alt="No Image">
+               <div class="card-body photo-footer">
+                <p class="card-title">Category: {{image.category}}</p>   
+                 <button type="button" class="btn  btn-outline-dark btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal{{image.id}}">View</button>
+                            
+              </div>            
+            </div>
+        </div>
+ 
 
-   
 
-    
-    <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
-    
-    <link href="{%static 'assests/css/cover.css'%}" rel="stylesheet">
+    <!--  modal -->
+    <div class="modal fade"  id="exampleModal{{image.id}}" tabindex="-1"  aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ModalTitle">{{image.category }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    </div>
 
-  </head>
+                        <div class="modal-body">
+                            <img src="{{image.image.url}}" class="card-img-top"> <hr>
+                            <p>Description {{image.description }}</p>
+                            <p><strong>Image location</strong>: {{image.location }}</p>
+                        </div>
+                        <!--<div class="modal-footer">
+                            <input class="form-control" type="text" value="http://127.0.0.1:8000{{image.image.url}}" id="thislinkhere-{{image.id}}">
+                            <a onclick="copyLink({{image.id}})"><button type="button" class="btn btn-outline-secondary my-2 my-sm-0 link-btn">Copy</button></a>
+                        </div>-->
 
-  <body class="d-flex h-100 text-center text-white bg-dark">
-    
-<div class="cover-container d-flex  w-50 h-100 p-5 mx-auto  flex-column">
-  <header class="mb-auto">
-    <div class= "nav-scroller py-1 mb-2">
-        <nav class="nav d-flex justify-content-between">
-            {%for category in categories%}
-            <a class="lead  link-secondary text-white" href="{%url 'image-category' category.id %}">{{category.image_category}}</a>
-            {%endfor%}
-            
-          </nav>
+               
+            </div>
+        </div>
     </div>
-  </header>
 
-  <main class="px-3">
-    <h1>Welcome to my Gallery.</h1>
-    <p class="lead">Showcasing three of my favourtie things right now! <br> Technology, Art and Animes.<br> Enjoy the ride</p>
-    <p class="lead">
-      
-    </p>
-  </main>
 
-  <footer class="mt-auto text-white">
-    <p class= "lead">My-Gallery <a href="#" class="text-white"></a> by Sarah Kamunya | 2022 .</p>
-  </footer>
+
+     {%endfor%}
+  </div>
 </div>
-
-
-    
-  </body>
-</html>
+</body>
+{%endblock%}

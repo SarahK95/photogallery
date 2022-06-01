@@ -1,56 +1,40 @@
 from django.shortcuts import render
-from django.http import HttpResponse, Http404
-from .models import Image,Category,Location
+from .models import Images,Categorys,Locations
 
 # Create your views here.
 def home(request):
-    categories = Category.objects.all()
-    context = {}
-    context['categories'] = categories
-    return render(request, 'index.html', context)
+    categories = Categorys.objects.all()
+    images = Images.objects.all()
+    return render(request, 'index.html',{'categories':categories, 'images':images })
 
-def search_results(request):
-    if 'image' in request. GET and request.GET["image"]:
+
+def search_category(request):
+    if 'image' in request.GET and request.GET["image"]:
         search_term = request.GET.get("image")
-        searched_images = Image.search_by_category(search_term)
+        searched_images = Images.search_by_category(search_term)
         message = f"{search_term}"
-        
-        return render(request, 'search.html',{"message":message,"all_img": searched_images})
+
+        return render(request, 'search.html',{"message":message,"photos": searched_images})
+
     else:
         message = "You haven't searched for any term"
-        return render (request, 'search.html',{"message":message})
+        return render(request, 'search.html',{"message":message})
     
-def categoryPage(request, id):
-    try:
-        category = Category.objects.get(id=id)
-        images = Image.objects.filter(category=category)
-        for x in images:
-            x.shortDescription = x.description[:130]
+    
+    # if request.method == 'POST':
+    #     searched = request.POST.get('searched')
+    #     search_results = Images.objects.filter(category__name=searched.title())
+    #     return render(request, 'search.html', {'searched': searched, 'search_results': search_results})
+    # else:
+    #     return render(request, 'search.html')
+    
+   
+    
+def search_location(request):
+    location = request.GET.get('location')
+    get_location = Images.objects.filter(location_name = location)
+    locations = Locations.objects.all()
+   
+    return render(request, 'location.html', {'location':locations, 'get_location': get_location})
 
-        context = {}
-        context['images'] = images
-        context['category'] = category
-    except:
-        ValueError
-        raise 'Error'    
-    return render(request, 'category.html', context)
-
-def imagePage(request, id):
-    try: 
-        category = Category.objects.get(id=id)
-        image = Image.objects.get(id=id)
-
-        context = {}
-        context['category'] = category
-        context['image'] = image
-    except:
-        ValueError
-        raise 'Error'    
-
-    return render(request, 'image.html', context)
-
-# def filter_by_location(request,location_id):
-       
-#    images = Image.filter_by_location(id=location_id )
-#    return render (request, '', {"images":images})
    

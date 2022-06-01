@@ -1,60 +1,28 @@
 from django.db import models
-from django.template.defaultfilters import slugify
-from django_resized import ResizedImageField
+
 
 # Create your models here.
-class Category(models.Model):
+class Categorys(models.Model):
     image_category = models.CharField(max_length=100, blank=True, null=True)
-    slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
-    id = models.CharField(max_length=50,primary_key=True, unique=True, blank=True)
-
     
-    
-    def save_category(self):
-        self.save()
-    
-    def delete_category(self):
-        self.delete()    
-        
-    def get_category_id(cls,id):
-        category = Category.object.get(pk=id)
-        return category
     
     def __str__(self):
         return self.image_category
     
-class Location(models.Model):
-    image_location = models.CharField(max_length=100, blank=True, null=True)
-    slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
-    id = models.CharField(max_length=50,primary_key=True, unique=True, blank=True)
+class Locations(models.Model):
+    location_name = models.CharField(max_length=100, blank=True, null=True)
     
-    def save_location(self):
-        self.save()
-        
-    def delete_location(self): 
-        self.delete()
-        
-    def get_location_id(cls,id):
-        location = Location.object.get(pk=id)
-        return location   
     
     def __str__(self):
-        return self.image_location        
+        return self.location_name        
 
-class Image(models.Model):
+class Images(models.Model):
     img_name =models.CharField(max_length=100)
     description = models.TextField()
-    image = models.ImageField(upload_to = 'images/', default='No image')
-    location = models.ForeignKey(Location, null=True, blank=True,on_delete=models.CASCADE ) 
-    category = models.ForeignKey(Category,  null=True, blank=True, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=500, unique=True, blank=True, null=True)
-    id = models.CharField(max_length=50,primary_key=True, unique=True, blank=True)
-    
-    
-    # ##ImageFields
-    squareImage = ResizedImageField(size=[1000, 1000], crop=['middle', 'center'], default='default_square.jpg', upload_to='square')
-    landImage = ResizedImageField(size=[2878, 1618], crop=['middle', 'center'], default='default_land.jpg', upload_to='landscape')
-    tallImage = ResizedImageField(size=[1618, 2878], crop=['middle', 'center'], default='default_tall.jpg', upload_to='tall')
+    image = models.ImageField(upload_to ='photos/')
+    location = models.ForeignKey(Locations, null=True, blank=True,on_delete=models.CASCADE ) 
+    category = models.ForeignKey(Categorys,  null=True, blank=True, on_delete=models.CASCADE)
+   
    
     class Meta:
         ordering = ['img_name']
@@ -70,17 +38,17 @@ class Image(models.Model):
         
     @classmethod  
     def get_image_by_id(cls, id):
-        img = Image.objects.get(id=id)
+        img = Images.objects.get(id=id)
         return img
     
     @classmethod
     def get_all_images(cls):
-        all_img=Image.objects.all()
-        return all_img
+        all_images=Images.objects.all()
+        return all_images
     
     @classmethod
     def filter_by_location(cls,id):
-        images = Image.objects.filter(location_id=id)
+        images = Images.objects.filter(location_id=id)
         return images
     
     @classmethod
@@ -90,7 +58,7 @@ class Image(models.Model):
     
     @classmethod
     def update_image(cls,current_value,new_value):
-        fetched_object = Image.objects.filter(img_name=current_value).update(img_name=new_value)
+        fetched_object = Images.objects.filter(img_name=current_value).update(img_name=new_value)
         return fetched_object
     
     

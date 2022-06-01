@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
+from pathlib import Path
+from django.contrib.messages import constants as messages
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mygallery',
     'bootstrap4',
+    'cloudinary'
     
     
 ]
@@ -81,9 +87,9 @@ WSGI_APPLICATION = 'Gallery.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'gallery',
-        'USER': 'njerib',
-        'PASSWORD': '5678',
+        'NAME': 'imagegallery',
+        'USER': 'njeriii',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '',
         
@@ -127,10 +133,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
-MEDIA_URL = '/uploads/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -144,3 +149,10 @@ DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'PNG': ".png"}
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
+
+# adding config
+# cloudinary.config( 
+#   cloud_name = "dx5snvr9v", 
+#   api_key = "699548787373722", 
+#   api_secret = "xcUQpAcozux-1bZHB7_hE0YZSNo" 
+# )

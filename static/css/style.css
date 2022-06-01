@@ -1,0 +1,22 @@
+
+body {
+background:rgb(200, 75, 17);
+}
+.navbar {
+background: #efd8d8;
+}
+
+.flex {
+display:flex !important;
+flex-direction: column !important;
+
+}
+
+.locs{
+color: #000;
+text-decoration: none;
+}
+
+.locs:hover {
+color: sienna;
+}

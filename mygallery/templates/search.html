@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<body>
+
+<div class="container">
+    <div class="row">
+        {% if searched %}
+        <h3 class="text-center text-muted mt-3">{{search_results|length}} search images</h3>
+        {%for image in searched_images%}
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <img src="{{image.image.url}}"
+               <div class="card-body">
+                <p class="card-title"><strong>Category: </strong>{{image.category}}</p>   
+                 <button type="button" class="btn btn-sm btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal{{image.id}}">View</button>
+                            
+              </div>            
+            </div>
+        </div>
+ 
+
+
+<!--  modal -->
+<div class="modal fade"  id="exampleModal{{image.id}}" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalTitle">{{image.category }}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                </div>
+
+                    <div class="modal-body">
+                        <img src="{{image.image.url}}" class="card-img-top"><hr>
+                        <p><strong>Description</strong> {{image.description }}</p>
+                        <p><strong>Image location</strong>: {{image.location }}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input class="form-control" type="text" value="http://127.0.0.1:8000{{image.image.url}}" id="thislinkhere-{{image.id}}">
+                        <a onclick="copyLink({{image.id}})"><button type="button" class="btn btn-outline-secondary my-2 my-sm-0 link-btn">Copy</button></a>
+
+                    </div>
+                
+
+           
+        </div>
+    </div>
+</div>
+</body>
+
+
+{%endfor%}
+{% else %}
+        <h2 class="text-center my-4">Enter a category...</h2>
+        {% endif %}
+</div>
+</div>
+{%endblock%}

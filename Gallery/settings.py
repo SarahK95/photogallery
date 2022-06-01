@@ -13,9 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 import os
 from pathlib import Path
 from django.contrib.messages import constants as messages
-import cloudinary
-import cloudinary.uploader
-import cloudinary.api
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mygallery',
     'bootstrap4',
-    'cloudinary'
+
     
     
 ]
@@ -150,9 +148,3 @@ DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'PNG': ".png"}
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
-# adding config
-# cloudinary.config( 
-#   cloud_name = "dx5snvr9v", 
-#   api_key = "699548787373722", 
-#   api_secret = "xcUQpAcozux-1bZHB7_hE0YZSNo" 
-# )

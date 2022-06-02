@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mygallery',
     'bootstrap4',
+    'cloudinary_storage',
+    'cloudinary',
 
     
     
@@ -164,7 +166,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
@@ -175,6 +177,12 @@ DJANGORESIZED_DEFAULT_QUALITY = 75
 DJANGORESIZED_DEFAULT_KEEP_META = True
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'PNG': ".png"}
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dx5snvr9v',
+    'API_KEY': '699548787373722',
+    'API_SECRET': 'xcUQpAcozux-1bZHB7_hE0YZSNo'
+}
 
 DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
